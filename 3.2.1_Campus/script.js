@@ -1,36 +1,34 @@
+let librosLeidos = [];
 
-let frutasConTipo = [
-    { nombre: "Naranja", tipo: "Cítrico" },
-    { nombre: "Manzana", tipo: "Pomácea" },
-    { nombre: "Plátano", tipo: "Tropical" },
-    { nombre: "Uva", tipo: "Baya" },
-    { nombre: "Fresa", tipo: "Baya" },
-    { nombre: "Piña", tipo: "Tropical" },
-    { nombre: "Mango", tipo: "Tropical" },
-    { nombre: "Cereza", tipo: "Drupa" },
-    { nombre: "Pera", tipo: "Pomácea" },
-    { nombre: "Sandía", tipo: "Cucurbitácea" },
-    { nombre: "Melón", tipo: "Cucurbitácea" },
-    { nombre: "Durazno", tipo: "Drupa" },
-    { nombre: "Coco", tipo: "Drupa" },
-    { nombre: "Kiwi", tipo: "Baya" },
-    { nombre: "Limón", tipo: "Cítrico" }
-];
+function agregarLibro(nombreLibro) {
+    librosLeidos.push(nombreLibro);
+    console.log("Libro agregado: " + nombreLibro);
+}
 
-// Objeto para guardar conteo
-let conteoPorTipo = {};
-
-// Ciclo para recorrer y contar
-for (let i = 0; i < frutasConTipo.length; i++) {
-    let tipo = frutasConTipo[i].tipo;
-
-    if (conteoPorTipo[tipo]) {
-        conteoPorTipo[tipo]++;
-    } else {
-        conteoPorTipo[tipo] = 1;
+function mostrarTodosLibrosLeidos() {
+    console.log("Libros leídos:");
+    for (let i = 0; i < librosLeidos.length; i++) {
+        console.log(librosLeidos[i]);
     }
 }
 
-// Mostrar resultado
-console.log("Conteo de frutas por tipo:");
-console.log(conteoPorTipo);
+agregarLibro("El Principito");
+agregarLibro("Hábitos Atómicos");
+agregarLibro("El arte de la guerra");
+agregarLibro("El túnel");
+agregarLibro("Rayuela");
+
+mostrarTodosLibrosLeidos();
+
+function buscarLibro(nombre) {
+    return librosLeidos.includes(nombre);
+}
+console.log(buscarLibro("El Principito")); // true
+console.log(buscarLibro("El Hobbit")); // false
+
+function buscarLibrosPorLetra(letra) {
+    return librosLeidos.filter(libro =>
+        libro.toLowerCase().includes(letra.toLowerCase())
+    );
+}
+console.log("Libros que contienen la letra 'e':", buscarLibrosPorLetra("e"));
